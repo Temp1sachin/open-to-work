@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+AI Meeting Summarizer
+An AI-powered, full-stack application designed to instantly summarize meeting transcripts. Users can upload a text transcript or a PDF file, provide a custom prompt, and generate a structured, editable summary. The final summary can be saved and shared with colleagues via email.
 
-## Getting Started
 
-First, run the development server:
 
-```bash
+How it Works
+Input Transcript: Users can either paste a raw text transcript directly into a textarea or upload a PDF document containing the meeting notes.
+
+Provide a Prompt: A custom instruction is given to the AI to guide the summarization process (e.g., "Summarize in bullet points for executives," or "Extract all action items and assignees").
+
+Generate Summary: The application sends the transcript and prompt to a backend server, which uses the Groq AI API to generate a summary.
+
+Review & Edit: The AI-generated summary is displayed in an editable textarea, allowing the user to make any necessary changes.
+
+Share via Email: The user can enter a list of recipient email addresses to share the final summary directly from the application.
+
+View History: All generated summaries are saved in a MongoDB database and can be viewed in the "Recent Summaries" section, allowing users to reload previous transcripts and prompts.
+
+Tech Stack
+This project is a monorepo with a separate frontend and backend.
+
+Frontend
+Framework: Next.js (React)
+
+Styling: Tailwind CSS
+
+Deployment: Vercel or Netlify
+
+Backend
+Framework: Node.js with Express.js
+
+Database: MongoDB with Mongoose for ODM
+
+AI Service: Groq API
+
+File Handling: Multer for file uploads and pdf-parse for PDF text extraction.
+
+Email Service: Nodemailer
+
+Deployment: Render or Heroku
+
+Environment Setup
+To run this project locally, you will need to set up both the backend and frontend environments.
+
+1. Clone the Repository
+git clone https://github.com/your-username/ai-meeting-summarizer.git
+cd ai-meeting-summarizer
+
+2. Backend Setup
+Navigate to the backend directory and install the dependencies.
+
+cd backend
+npm install
+
+Create a .env file in the backend directory and add the following environment variables.
+
+# Groq API Key
+GROQ_API_KEY=your_groq_api_key_here
+
+# MongoDB Connection String
+MONGO_URI=your_mongodb_connection_string_here
+
+# Server Port
+PORT=5001
+
+# Nodemailer SMTP Credentials (use Ethereal for testing or a real provider)
+EMAIL_HOST=smtp.example.com
+EMAIL_PORT=587
+EMAIL_USER=user@example.com
+EMAIL_PASS=your-app-password
+
+3. Frontend Setup
+Navigate to the frontend directory (from the root) and install the dependencies.
+
+cd ../frontend  # or your frontend folder name
+npm install
+
+Create a .env.local file in the frontend directory and add the following variable to point to your local backend server.
+
+NEXT_PUBLIC_BACKEND_URL=http://localhost:5001
+
+Running the Application
+You need to run both the backend and frontend servers simultaneously in separate terminal windows.
+
+Start the Backend Server
+In the backend directory:
+
+npm start 
+# Or use: node index.js
+
+The backend server will be running on http://localhost:5001.
+
+Start the Frontend Development Server
+In the frontend directory:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The frontend application will be available at http://localhost:3000.

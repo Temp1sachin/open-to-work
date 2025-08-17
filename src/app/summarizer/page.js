@@ -306,7 +306,7 @@ export default function SummarizerPage() {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5001';
+        const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
         const response = await fetch(`${backendUrl}/api/history`);
         if (!response.ok) throw new Error('Failed to fetch history');
         const data = await response.json();
@@ -330,7 +330,7 @@ export default function SummarizerPage() {
     setSummary('');
 
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5001';
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
       const formData = new FormData();
       formData.append('prompt', prompt);
       formData.append('transcript', transcript);
@@ -375,7 +375,7 @@ export default function SummarizerPage() {
     }
 
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5001';
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
       const response = await fetch(`${backendUrl}/api/share`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

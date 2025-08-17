@@ -17,6 +17,9 @@ app.use(cors());
 app.use(express.json());
 
 // API Routes
+app.get('/', (req, res) => {
+  res.send('Welcome to the AI Meeting Summarizer API');
+});
 app.use('/api/summarize', summarizeRoute);
 app.use('/api/share', shareRoute);
 app.use('/api/history', historyRoute); // <-- Add the new history route
